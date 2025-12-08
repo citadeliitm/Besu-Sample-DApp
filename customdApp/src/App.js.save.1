@@ -1,0 +1,79 @@
+/*import React, { Component, useState } from 'react';
+import Web3 from 'web3';
+import './App.css';
+import Transfer from './EtherTransferImpl.js';
+
+class App extends Component {
+/*     componentWillMount() { //inbuilt function will be called once when the component is called
+	console.log("within component will mount")
+     	this.loadBlockchainData();
+     }
+
+     async loadBlockchainData() {
+     	const web3 = new Web3("http://10.21.227.183:8545/");
+        const accounts = await web3.eth.getAccounts();
+	console.log(accounts)
+	this.setState({
+		accounts: accounts
+	});
+     }
+	constructor(props) {
+		super(props)
+		this.state = { accounts: [] }
+	}*/
+
+/* 	function MyComponent() {
+
+	const [showBox, setShowBox] = useState(false)
+	function handleClick() {
+		setShowBox(true);
+	}
+
+		return (
+			<div>
+				<h1> Sri Rama Jayam!! </h1>
+				<input type="text" placeholder="Enter recipient account" id="recipientAccount"/>
+				<button onClick={handleClick}>Transfer</button>
+				{showBox && (
+					<div><Transfer /></div>
+				)}
+			</div>
+		);
+	}
+}
+
+export default App;
+
+//need to include the backend, may be need to implement the same code here
+*/
+
+import React,{useState} from 'react';
+import Transfer from './EtherTransferImpl.js';
+
+function App() {
+  const [transfer, setTransfer] = useState(true);
+  const [inputValue, setInputValue] = useState('');
+
+  function handleClick(){
+	setTransfer(false);
+  }
+
+  function handleChange(e){
+  	setInputValue(e.target.value);
+  }
+
+  return ( <> 
+	{ transfer ? (
+		<div>
+			<h1>SRJ</h1>
+			<input type="text" placeholder="Recipient Account Number" id="recipientAN" onChange={handleChange}></input>
+			<button onClick={handleClick}>Transfer</button>
+		</div>
+	) : (cvcdfvf
+          	 <div><Transfer recipientAddress={inputValue}/></div>
+        )}
+	</>
+  );
+}
+
+export default App;

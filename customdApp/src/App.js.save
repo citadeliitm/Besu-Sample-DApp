@@ -1,0 +1,48 @@
+import React, { Component } from 'react';
+import Web3 from 'web3';
+import './App.css';
+import ethertransfer from './EtherTransferImpl.js';
+
+class App extends Component {
+     componentWillMount() { //inbuilt function will be called once when the component is called
+	console.log("within component will mount")
+     	this.loadBlockchainData();
+     }
+
+     async loadBlockchainData() {
+     	const web3 = new Web3("http://10.21.227.183:8545/");
+        const accounts = await web3.eth.getAccounts();
+	console.log(accounts)
+	this.setState({
+		accounts: accounts
+	});
+     }
+	constructor(props) {
+		super(props)
+		this.state = { accounts: [] }
+	}
+
+	render() {
+		return (
+			<div>
+				<h1> Sri Rama Jayam!! </h1>
+				<input type="text" placeholder="Enter recipient account" id="recipientAccount"/>
+				<button onClick={transfer}>Transfer</button>
+			</div>
+		);
+	}
+}
+
+function transfer() {
+//                console.log(<ethertransfer />);
+              return (
+                      <div>
+                              <ethertransfer />
+                      </div>
+              );
+}
+
+
+export default App;
+
+//need to include the backend, may be need to implement the same code here

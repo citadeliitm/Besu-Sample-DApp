@@ -1,0 +1,30 @@
+services:
+  besu:
+    image: hyperledger/besu:latest
+    restart: unless-stopped
+    command: 
+      --network-id=1337
+      --genesis-file=/config/genesis.json
+      --data-path=/var/lib/besu
+      --p2p-port=30303
+      --p2p-host=10.21.227.180
+      --nat-method=DOCKER
+      --rpc-http-enabled=true
+      --rpc-http-host=0.0.0.0
+      --rpc-http-port=8545
+      --rpc-http-api=ETH,NET,WEB3,ADMIN,IBFT
+      --rpc-http-cors-origins="*"
+      --host-allowlist=*
+      --discovery-enabled=true
+      --fast-sync-min-peers=3
+      --logging=INFO
+    ports:
+      - "30303:30303/tcp"
+      - "30303:30303/udp"
+      - "8545:8545"
+    environment:
+      - BESU_NODE_PRIVATE_KEY_FILE=/keys/key
+    volumes:
+      - /home/brl14/ibft-data-alloc/data:/keys:ro
+      - /home/brl14/ibft-data-alloc/data:/var/lib/besu
+      - /home/brl14/ibft-data-alloc/genesis.json:/config/genesis.json:ro
